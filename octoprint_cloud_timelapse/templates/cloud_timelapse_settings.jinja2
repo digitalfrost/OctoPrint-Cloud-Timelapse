@@ -1,0 +1,19 @@
+<h4>Cloud Timelapse Settings</h4>
+
+<p>You must provide an API Token to be able to upload rendered timelapses to your cloud provider.</p>
+
+<form class="form-horizontal" onsubmit="return false;">
+    <p>
+        <label for="cloud_timelaspse_cloud_provider"><strong>Cloud Provider:</strong></label>
+        <label><input type="radio" value="Dropbox" data-bind="checked: settings.plugins.cloud_timelapse.cloud_provider" />Dropbox</label>
+        <label><input type="radio" value="Google Drive" data-bind="checked: settings.plugins.cloud_timelapse.cloud_provider" />Google Drive</label>
+    </p>
+    <p>
+        <label for="cloud_timelapse_api_token"><strong>API Token</strong></label>
+        <input class="input-text input-block-level" type="text" id="dropbox_timelapse_api_token" data-bind="value: settings.plugins.cloud_timelapse.api_token">
+    </p>
+    <p>
+        <label for="dropbox_timelapse_delete_after_upload"><strong>Delete After Upload?</strong></label>
+        <input class="input-checkbox" type="checkbox" id="dropbox_timelapse_delete_after_upload" data-bind="checked: settings.plugins.cloud_timelapse.delete_after_upload">
+    </p>
+</form>
