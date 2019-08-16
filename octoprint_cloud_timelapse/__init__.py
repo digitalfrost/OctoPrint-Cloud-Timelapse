@@ -5,6 +5,8 @@ import octoprint.plugin
 from octoprint.events import Events
 import os
 
+from uploaders import *
+
 class CloudTimelapsePlugin(
         octoprint.plugin.SettingsPlugin,octoprint.plugin.EventHandlerPlugin,octoprint.plugin.TemplatePlugin, octoprint.plugin.RestartNeedingPlugin):
 
