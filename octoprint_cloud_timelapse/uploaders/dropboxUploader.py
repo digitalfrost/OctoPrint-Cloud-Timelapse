@@ -1,7 +1,7 @@
 '''
     dropboxUploader
     Uploads a timelapse file to dropbox
-    if upload was successfull returns true
+    if upload was successfull returns True
 '''
 import dropbox
 from dropbox.files import WriteMode
