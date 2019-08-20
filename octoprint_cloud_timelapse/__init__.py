@@ -10,6 +10,12 @@ from uploaders import *
 class CloudTimelapsePlugin(
         octoprint.plugin.SettingsPlugin,octoprint.plugin.EventHandlerPlugin,octoprint.plugin.TemplatePlugin, octoprint.plugin.RestartNeedingPlugin):
 
+    uploaders = {'dropbox' : dropboxUploader.upload,
+                  'googleDrive' : googleDriveUploader.upload
+                }
+    path = None
+    file_name = None
+
     @property
     def api_token(self):
         return self._settings.get(['api_token'])
@@ -21,6 +27,18 @@ class CloudTimelapsePlugin(
     @property
     def delete_after_upload(self):
         return self._settings.get_boolean(['delete_after_upload'])
+
+    def on_event(self, event, payload):
+        if event == Events.MOVIE_DONE:
+            self.set_timelapse_info(payload)
+            self.upload_timelapse(self.uploaders[self.cloud_provider])
+
+    def set_timelapse_info(self, payload):
+        self.path = payload['movie']                
+        self.file_name = payload['movie_basename']
+
+    def upload_timelapse(self, uploader):
+        uploader(self)
 
     ##~~ SettingsPlugin mixin
     
